@@ -15,7 +15,7 @@ const nunito = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portofolio-qa.vercel.app"),
+  metadataBase: new URL("https://portofolio-qa.pages.dev"),
   title: "Indra Kuswara — QA Engineer",
   description:
     "QA Engineer with 7+ years of experience in SaaS, supply chain, and digital media. Playwright automation, API & performance testing — regression time cut by 75%, 95% release coverage.",
