@@ -1,1 +1,9 @@
-{"assets":{"directory":"./out","not_found_handling":"404-page"},"compatibility_date":"2025-10-01","name":"portofolio-qa"}
+{
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  },
+  "compatibility_date": "2025-10-01",
+  "name": "portofolio-qa",
+  "workers_dev": true
+}
