@@ -34,6 +34,7 @@ test("projects carry the verified numbers", () => {
   assert.equal(deploy.url, "https://github.com/indrakuswara/perpustakaan-shalawat");
   assert.match(deploy.body, /26 tests/);
   assert.match(deploy.body, /22 passed/);
+  assert.match(deploy.body, /0 failed/);
   assert.match(deploy.body, /20 screenshots/);
 });
 
