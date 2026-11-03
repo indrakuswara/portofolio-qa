@@ -23,14 +23,31 @@ test("stats match the CV exactly", () => {
 });
 
 test("projects carry the verified numbers", () => {
-  assert.equal(content.projects.length, 2);
-  const [sauce, api] = content.projects;
+  assert.equal(content.projects.length, 3);
+  const [sauce, api, deploy] = content.projects;
   assert.match(sauce.body, /78 test cases/);
   assert.match(sauce.body, /233 assertions/);
   assert.equal(sauce.url, "https://github.com/indrakuswara/saucedemo-automation");
   assert.match(api.body, /28 .*API tests/);
   assert.match(api.body, /5 performance scenarios/);
   assert.equal(api.url, "https://github.com/indrakuswara/api-testing-k6");
+  assert.equal(deploy.url, "https://github.com/indrakuswara/perpustakaan-shalawat");
+  assert.match(deploy.body, /26 tests/);
+  assert.match(deploy.body, /22 passed/);
+  assert.match(deploy.body, /20 screenshots/);
+});
+
+test("prose copy passes the No AI Slop filter", () => {
+  for (const field of [content.intro, content.target]) {
+    assert.ok(!field.includes("—"), `em dash in prose: ${field}`);
+  }
+  for (const project of content.projects) {
+    assert.ok(!project.body.includes("—"), `em dash in project body: ${project.title}`);
+    assert.ok(!project.body.includes("Not just"), `binary contrast in: ${project.title}`);
+  }
+  assert.match(content.intro, /I inspect down to the last half-second/);
+  assert.match(content.projects[1].body, /never hit the public demo API/);
+  assert.match(content.target, /on the individual contributor track/);
 });
 
 test("experience lists all four roles from the CV", () => {
