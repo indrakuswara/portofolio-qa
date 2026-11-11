@@ -30,7 +30,7 @@ export default function Home() {
         <a className="btn btn-primary" href="#projects">
           View my projects
         </a>
-        <a className="btn btn-ghost" href="/Indra_Kuswara_CV_ATS.pdf" download>
+        <a className="btn btn-ghost" href="/IndraKuswara_CV.pdf" download>
           Download CV
         </a>
       </section>

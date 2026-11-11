@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 
 const content = JSON.parse(
   readFileSync(new URL("../src/content.json", import.meta.url), "utf8")
@@ -69,6 +69,16 @@ test("philosophy and target are present", () => {
   assert.match(content.philosophy.quote, /If you are kind to others/);
   assert.match(content.target, /Senior QA Engineer/);
   assert.match(content.target, /individual contributor/);
+});
+
+test("CV download link uses the IndraKuswara_CV filename", () => {
+  const page = readFileSync(new URL("../src/app/page.tsx", import.meta.url), "utf8");
+  assert.match(page, /href="\/IndraKuswara_CV\.pdf"/);
+  assert.ok(!page.includes("Indra_Kuswara_CV_ATS.pdf"), "old CV filename still linked");
+  assert.ok(
+    existsSync(new URL("../public/IndraKuswara_CV.pdf", import.meta.url)),
+    "renamed CV PDF missing from public/"
+  );
 });
 
 test("copy is English only — no Indonesian filler words", () => {
